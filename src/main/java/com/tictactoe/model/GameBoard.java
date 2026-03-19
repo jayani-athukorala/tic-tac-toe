@@ -1,4 +1,4 @@
-package se.lexicon.model;
+package com.tictactoe.model;
 
 public class GameBoard {
 
@@ -29,8 +29,7 @@ public class GameBoard {
     }
 
     public int[] getBestMove(char systemSymbol, char playerSymbol){
-        //To be removed
-        int rowValue = -1, columnValue = -1;
+        int rowValue = 0, columnValue = 0;
         //Check for winning move
         for (int i=0; i<3; i++){
             for (int j=0; j<3; j++){
@@ -61,16 +60,16 @@ public class GameBoard {
         // Take center
         if (board[1][1] == '-') return new int[]{1,1};
 
-        // Take corners
-        int[][] corners = {{0,0},{0,2},{2,0},{2,2}};
-        for (int[] c : corners) {
-            if (board[c[0]][c[1]] == '-') return c;
-        }
-
         // Take sides
         int[][] sides = {{0,1},{1,0},{1,2},{2,1}};
         for (int[] s : sides) {
             if (board[s[0]][s[1]] == '-') return s;
+        }
+
+        // Take corners
+        int[][] corners = {{0,0},{0,2},{2,0},{2,2}};
+        for (int[] c : corners) {
+            if (board[c[0]][c[1]] == '-') return c;
         }
 
         return new int[]{rowValue, columnValue};
